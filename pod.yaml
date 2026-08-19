@@ -1,10 +1,10 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: go-sample
-spec: {}
----
+#---
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  name: go-sample
+#spec: {}
+#---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,18 +13,17 @@ metadata:
 spec:
   replicas: 1
   selector:
-      matchLabels:
-        app: go-sample
+    matchLabels:
+      app: go-sample
   template:
     metadata:
       labels:
         app: go-sample
     spec:
       containers:
-        - image: asoldatenko/echo-server:0.0.5
+        - image: asoldatenko/echo-server
           imagePullPolicy: Always
           name: echo-server
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            readOnlyRootFilesystem: true
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
