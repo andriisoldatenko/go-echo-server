@@ -6,9 +6,9 @@ ARG TARGETARCH
 WORKDIR /app
 COPY go.mod ./
 COPY main.go .
-RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go build -trimpath -ldflags="-s -w" -o /usr/local/bin/echo-server .
+RUN GOOS=$TARGETOS GOARCH=$TARGETARCH go build -trimpath -ldflags="-s -w" -o /usr/local/bin/manager .
 
 EXPOSE 8080
 
-ENTRYPOINT ["echo-server"]
+ENTRYPOINT ["manager"]
 CMD []
